@@ -1,0 +1,13 @@
+%head
+  %title ProperMrsk
+  %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }
+  = action_cable_meta_tag
+  = csrf_meta_tags
+  = csp_meta_tag
+  -# = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
+  %script{src: "https://cdn.tailwindcss.com"}
+  = stylesheet_link_tag "application", "data-turbo-track": "reload"
+  = javascript_importmap_tags
+%body
+  %main.container.mx-auto.px-5.flex
+    = yield
