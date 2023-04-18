@@ -45,6 +45,12 @@ mrsk setup
 
 5. Open the `MAIN_HOST` and enjoy your application
 
+## via GitHub Actions
+
+ [![Deploy](https://github.com/kalashnikovisme/wall/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/kalashnikovisme/wall/actions/workflows/deploy.yml)
+
+We've prepared GitHub Actions workflow for a deployment. To use it provide all secrets above to repository secrets and run a workflow.
+
 # Run locally
 
 ## Install
