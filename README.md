@@ -13,9 +13,22 @@ It includes
 Provide all these secrets to the ENV file (but not .env)
 
 | Secret | Description | Source |
-| ------------- | ------------- |
-|  |  |
-
+| ------------- | ------------- | ------------- |
+| `RAILS_MASTER_KEY` | Encryption key for Rails Credentials | Generate it yourself |
+| `MRSK_REGISTRY_PASSWORD` | Your Docker Hub password. **Don't commit it!** |  |
+| `DO_SPACES_KEY` | Digital Ocean Spaces Key | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
+| `DO_SPACES_SECRET` | Digital Ocean Spaces Secret | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
+| `DO_SPACES_BUCKET` | Digital Ocean Spaces Bucket | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
+| `DO_SPACES_REGION` | Digital Ocean Spaces Region | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
+| `POSTGRES_USER` | User in PostgreSQL that be used to access the DB from Rails | Generate it youself  |
+| `POSTGRES_PASSWORD` | Password of the PostgreSQL user | Generate it yourself |
+| `POSTGRES_DB` | Database for Rails application | Generate it yourself |
+| `MAIN_HOST` | The main host of your Rails application | Get it from the hosting platform |
+| `ANYCABLE_GO_HOST` | The host which contains [AnyCable Go](https://anycable.io/) web socket server | Get it from the hosting platform |
+| `DB_HOST` | The host for PostgreSQL | Get it from the hosting platform |
+| `REDIS_HOST` | The host for Redis | Get it from the hosting platform |
+| `REDIS_PASSWORD` | The password to access the Redis instance | Generate it yourself |
+| `NEW_RELIC_KEY` | The key of your New Relic account | Get it from your New Relic account |
 
 # Run locally
 
