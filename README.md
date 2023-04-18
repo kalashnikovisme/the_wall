@@ -1,24 +1,34 @@
-# README
+# The Wall
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The sample Rails application for MRSK deploy.
 
-Things you may want to cover:
+It includes
 
-* Ruby version
+* PostgreSQL
+* Sidekiq - for background tasks
+* AnyCable - for Turbo Rails
 
-* System dependencies
+# Deploy
 
-* Configuration
+Provide all these secrets to the ENV file (but not .env)
 
-* Database creation
+| Secret | Description | Source |
+| ------------- | ------------- |
+|  |  |
 
-* Database initialization
 
-* How to run the test suite
+# Run locally
 
-* Services (job queues, cache servers, search engines, etc.)
+## Install
 
-* Deployment instructions
+We use [dip](https://github.com/bibendi/dip)
 
-* ...
+```
+dip provision
+```
+
+## Run
+
+```
+dip up web anycable sidekiq
+```
