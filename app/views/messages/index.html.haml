@@ -8,7 +8,7 @@
       = render 'snapshots/form'
 
       = turbo_stream_from "snapshots"
-      #snapshots
+      %ul#snapshots
         = render @snapshots
 
     .overflow-y-scroll.h-full.flex-grow
