@@ -1,4 +1,4 @@
-# The Wall
+# The Wall [![Deploy](https://github.com/kalashnikovisme/wall/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/kalashnikovisme/wall/actions/workflows/deploy.yml)
 
 The sample Rails application for MRSK deploy.
 
