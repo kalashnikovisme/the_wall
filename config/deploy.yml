@@ -92,7 +92,6 @@ accessories:
         ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/0"
         ANYCABLE_RPC_HOST: "<%= ENV['MAIN_HOST'] %>:50051"
         ANYCABLE_DEBUG: true
-        ANYCABLE_LOG_LEVEL: debug
 
   <%# new_relic: %>
   <%#   image: newrelic/infrastructure:latest %>
