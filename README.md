@@ -11,7 +11,7 @@ It includes
 # Deploy
 
 1. Install mrsk `gem install mrsk`
-2. Provide all these secrets to the `ENV_FILE` (but not .env). Don't commit this file!
+2. Provide all secrets below to the `ENV_FILE` (but not .env). Don't commit this file! You can find [.env.example here](https://github.com/kalashnikovisme/wall/blob/main/.env.example).
 
 | Secret | Description | Source |
 | ------------- | ------------- | ------------- |
