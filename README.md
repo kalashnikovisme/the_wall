@@ -31,8 +31,18 @@ It includes
 | `REDIS_PASSWORD` | The password to access the Redis instance | Generate it yourself |
 | `NEW_RELIC_KEY` | The key of your New Relic account | Get it from your New Relic account |
 
-3. Run export `cat ../.wall_env | xargs` && mrsk envify` or `make envify`
-4. Run `mrsk setup`
+3. Prepare your secrets
+
+```
+export `cat ../ENV_FILE | xargs` && mrsk envify
+```
+
+4. Setup all services
+
+```
+mrsk setup
+```
+
 5. Open the `MAIN_HOST` and enjoy your application
 
 # Run locally
