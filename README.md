@@ -10,12 +10,13 @@ It includes
 
 # Deploy
 
-Provide all these secrets to the ENV file (but not .env)
+1. Install mrsk `gem install mrsk`
+2. Provide all these secrets to the `ENV_FILE` (but not .env). Don't commit this file!
 
 | Secret | Description | Source |
 | ------------- | ------------- | ------------- |
 | `RAILS_MASTER_KEY` | Encryption key for Rails Credentials | Generate it yourself |
-| `MRSK_REGISTRY_PASSWORD` | Your Docker Hub password. **Don't commit it!** |  |
+| `MRSK_REGISTRY_PASSWORD` | Your Docker Hub password |  |
 | `DO_SPACES_KEY` | Digital Ocean Spaces Key | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
 | `DO_SPACES_SECRET` | Digital Ocean Spaces Secret | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
 | `DO_SPACES_BUCKET` | Digital Ocean Spaces Bucket | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
@@ -29,6 +30,10 @@ Provide all these secrets to the ENV file (but not .env)
 | `REDIS_HOST` | The host for Redis | Get it from the hosting platform |
 | `REDIS_PASSWORD` | The password to access the Redis instance | Generate it yourself |
 | `NEW_RELIC_KEY` | The key of your New Relic account | Get it from your New Relic account |
+
+3. Run export `cat ../.wall_env | xargs` && mrsk envify` or `make envify`
+4. Run `mrsk setup`
+5. Open the `MAIN_HOST` and enjoy your application
 
 # Run locally
 
