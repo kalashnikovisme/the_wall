@@ -1,2 +1,2 @@
 envify:
-	export `cat ../.proper_mrsk_env | xargs` && mrsk envify
+	export `cat ../.wall_env | xargs` && mrsk envify

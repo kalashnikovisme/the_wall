@@ -1,5 +1,5 @@
-service: proper_mrsk
-image: kalashnikovisme/proper_mrsk
+service: wall
+image: kalashnikovisme/wall
 servers:
   web:
     hosts:
