@@ -1,2 +1,9 @@
-= form_with(model: @snapshot, remote: true, class: "sticky bottom-0 flex flex-row p-2 border-gray-400 bg-gray-100 rounded-md mt-4 mr-4" ) do |f|
-  = f.submit 'Make a report with Sidekiq and AnyCable', data: { disable_with: false }, class: 'rounded py-2 px-5 bg-red-600 text-white inline-block cursor-pointer hover:bg-red-500 transition-colors disabled:cursor-not-allowed'
+%div{ class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" }
+  = form_with(model: @snapshot, remote: true, class:  ) do |f|
+    .flex.items-center.justify-between
+      = f.submit 'Make a snapshot', data: { disable_with: false }, class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+      %p.text-gray-600.text-xs.italic.ml-4
+        This button will start building of the Snapshot with all messages written on the Wall. Snapshots are building in the background with
+        %b Sidekiq.
+        Real-time appearing of a new snapshot is provided by
+        %b AnyCable.
