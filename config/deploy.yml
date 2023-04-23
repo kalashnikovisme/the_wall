@@ -45,8 +45,8 @@ builder:
 
 env:
   clear:
-    ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/0"
-    REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/1"
+    ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>/0"
+    REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>/1"
     CABLE_URL: "ws://<%= ENV['ANYCABLE_GO_HOST'] %>/cable"
   secret:
     - DB_HOST
@@ -76,7 +76,7 @@ accessories:
   redis:
     image: redis:7.0.10
     host: <%= ENV['REDIS_HOST'] %>
-    port: 6379
+    port: "80:6379"
     cmd: redis-server --requirepass <%= ENV['REDIS_PASSWORD'] %>
     volumes:
       - /var/lib/redis:/data
@@ -89,7 +89,7 @@ accessories:
       clear:
         ANYCABLE_HOST: "0.0.0.0"
         ANYCABLE_PORT: 8080
-        ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/0"
+        ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>/0"
         ANYCABLE_RPC_HOST: "<%= ENV['MAIN_HOST'] %>:50051"
         ANYCABLE_DEBUG: true
 
