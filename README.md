@@ -2,6 +2,10 @@
 
 The sample Rails application for MRSK deploy.
 
+This repository contains example applications demonstrating how to deploy Rails applications with Sidekiq and AnyCable using MRSK.
+
+> Read more in [our blog-post](https://evilmartians.com).
+
 It includes
 
 * PostgreSQL
