@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - fix_latest_docker_installation
 
 jobs:
   deploy:
