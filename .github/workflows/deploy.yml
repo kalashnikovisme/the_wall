@@ -13,11 +13,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Check Docker version
-        uses: docker-practice/actions-setup-docker@master
-      - run: |
-          set -x
-          docker --version
       - name: Configure SSH for MAIN_HOST
         run: |
           mkdir -p ~/.ssh/
@@ -34,12 +29,12 @@ jobs:
           SSH_USER: root
           SSH_KEY: ${{ secrets.PRODUCTION_SSH_KEY }}
 
-      # - name: Install The Latest Docker
-      #   run: |
-      #     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      #     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-      #     sudo apt-get update
-      #     sudo apt-get install docker-ce
+      - name: Install The Latest Docker
+        run: |
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt-get update
+          sudo apt-get install docker-ce
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
