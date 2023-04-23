@@ -4,11 +4,6 @@
 ARG RUBY_VERSION=3.2.2
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
-ARG DO_SPACES_KEY
-ARG DO_SPACES_SECRET
-ARG DO_SPACES_BUCKET
-ARG DO_SPACES_REGION
-
 # Rails app lives here
 WORKDIR /rails
 
@@ -38,6 +33,11 @@ COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
+
+ARG DO_SPACES_KEY
+ARG DO_SPACES_SECRET
+ARG DO_SPACES_BUCKET
+ARG DO_SPACES_REGION
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
