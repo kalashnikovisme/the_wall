@@ -2,8 +2,7 @@ service: wall
 image: kalashnikovisme/wall
 servers:
   web:
-    hosts:
-      - <%= ENV['MAIN_HOST'] %>
+    - <%= ENV['MAIN_HOST'] %>
   anycable-rpc:
     traefik: true
     hosts:
@@ -100,8 +99,6 @@ accessories:
       clear:
         NRIA_LICENSE_KEY: <%= ENV['NEW_RELIC_KEY'] %>
     options:
-      name: newrelic_infra
-      network: host
       cap-add: SYS_PTRACE
       privileged: true
       pid: host
