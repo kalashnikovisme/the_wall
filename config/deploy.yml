@@ -59,6 +59,7 @@ env:
     - POSTGRES_DB
     - POSTGRES_PASSWORD
     - RAILS_MASTER_KEY
+    - NEW_RELIC_KEY
 
 accessories:
   db:
