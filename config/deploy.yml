@@ -2,8 +2,7 @@ service: wall
 image: kalashnikovisme/wall
 servers:
   web:
-    hosts:
-      - <%= ENV['MAIN_HOST'] %>
+    - <%= ENV['MAIN_HOST'] %>
   anycable-rpc:
     traefik: true
     hosts:
