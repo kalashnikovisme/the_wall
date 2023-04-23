@@ -15,7 +15,9 @@ jobs:
     steps:
       - name: Check Docker version
         uses: docker-practice/actions-setup-docker@master
-      - run: docker --version
+      - run: |
+          set -x
+          docker --version
       - name: Configure SSH for MAIN_HOST
         run: |
           mkdir -p ~/.ssh/
