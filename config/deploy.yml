@@ -7,7 +7,7 @@ servers:
     traefik: true
     hosts:
       - <%= ENV['MAIN_HOST'] %>
-    cmd: bundle exec anycable --debug
+    cmd: bundle exec anycable
     port: 50051
     env:
       clear: 
@@ -98,10 +98,10 @@ accessories:
     env:
       clear:
         NRIA_LICENSE_KEY: <%= ENV['NEW_RELIC_KEY'] %>
+    volumes:
+      - "/:/host:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock"
     options:
       cap-add: SYS_PTRACE
       privileged: true
       pid: host
-      volume:
-        - "/:/host:ro"
-        - "/var/run/docker.sock:/var/run/docker.sock"
