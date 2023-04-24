@@ -1,21 +1,31 @@
 service: wall
 image: kalashnikovisme/wall
+# `servers` section contains web (our Rails application).
+# Also it contains anycable-rpc and sidekiq because both of this services need application codebase.
 servers:
   web:
     - <%= ENV['MAIN_HOST'] %>
+
   anycable-rpc:
+    # `traefik` is enabled only for `web` role by default
     traefik: true
+
+    # anycable-rpc needs to be deployed on the same host.
+    # So, we don't need to share sessions between Rails and AnyCable RPC
     hosts:
       - <%= ENV['MAIN_HOST'] %>
-    cmd: bundle exec anycable --debug
+    cmd: bundle exec anycable
     port: 50051
     env:
       clear: 
         ANYCABLE_RPC_HOST: 0.0.0.0:50051
+
+    # These labels provide an additional end-point for RPC server using traefik
     labels:
       traefik.tcp.routers.rpc.rule: 'HostSNI(`*`)'
       traefik.tcp.routers.rpc.entrypoints: rpc
       traefik.tcp.services.rpc.loadbalancer.server.port: 50051
+
   sidekiq:
     hosts:
       - <%= ENV['MAIN_HOST'] %>
@@ -23,11 +33,15 @@ servers:
 
 traefik:
   options:
+    # publish port for AnyCable RPC server
     publish:
       - 50051:50051
   args:
-    entrypoints.web.address: ":80"
+    # add new entrypoint for AnyCable RPC
     entrypoints.rpc.address: ":50051"
+
+    # In case your create an additional end-point with traefik, don't forget to mention the default port for `web` role
+    entrypoints.web.address: ":80"
 
 registry:
   username: kalashnikovisme
@@ -35,7 +49,10 @@ registry:
     - MRSK_REGISTRY_PASSWORD
 
 builder:
+  # in our case, we don't need ARM image built, that's `multiarch` is turned off
   multiarch: false
+
+  # `rails assets:precompile` runs in the build-time, that's why we need to add Digital Ocean Spaces creds here
   args:
     DO_SPACES_KEY: <%= ENV['DO_SPACES_KEY'] %>
     DO_SPACES_SECRET: <%= ENV['DO_SPACES_SECRET'] %>
@@ -48,15 +65,20 @@ env:
     REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/1"
     CABLE_URL: "ws://<%= ENV['ANYCABLE_GO_HOST'] %>/cable"
   secret:
+    - RAILS_MASTER_KEY
+
+    # add secrets for the Rails application to be connected to PostgreSQL
     - DB_HOST
+    - POSTGRES_USER
+    - POSTGRES_DB
+    - POSTGRES_PASSWORD
+
+    # we need these secrets in the server run-time
     - DO_SPACES_KEY
     - DO_SPACES_SECRET
     - DO_SPACES_BUCKET
     - DO_SPACES_REGION
-    - POSTGRES_USER
-    - POSTGRES_DB
-    - POSTGRES_PASSWORD
-    - RAILS_MASTER_KEY
+
     - NEW_RELIC_KEY
 
 accessories:
@@ -98,10 +120,10 @@ accessories:
     env:
       clear:
         NRIA_LICENSE_KEY: <%= ENV['NEW_RELIC_KEY'] %>
+    volumes:
+      - /:/host:ro
+      - /var/run/docker.sock:/var/run/docker.sock
     options:
       cap-add: SYS_PTRACE
       privileged: true
       pid: host
-      volume:
-        - "/:/host:ro"
-        - "/var/run/docker.sock:/var/run/docker.sock"
