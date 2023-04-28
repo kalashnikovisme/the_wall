@@ -27,20 +27,22 @@ RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
-
 # Copy application code
 COPY . .
 
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-ARG DO_SPACES_KEY
-ARG DO_SPACES_SECRET
-ARG DO_SPACES_BUCKET
-ARG DO_SPACES_REGION
-
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN --mount=type=secret,id=DO_SPACES_KEY \
+  --mount=type=secret,id=DO_SPACES_SECRET \
+  --mount=type=secret,id=DO_SPACES_BUCKET \
+  --mount=type=secret,id=DO_SPACES_REGION \
+  DO_SPACES_KEY=$(cat /run/secrets/DO_SPACES_KEY) \
+  DO_SPACES_SECRET=$(cat /run/secrets/DO_SPACES_SECRET) \
+  DO_SPACES_BUCKET=$(cat /run/secrets/DO_SPACES_BUCKET) \
+  DO_SPACES_REGION=$(cat /run/secrets/DO_SPACES_REGION) \
+  SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final stage for app image

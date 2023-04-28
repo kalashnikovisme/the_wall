@@ -36,11 +36,11 @@ registry:
 
 builder:
   multiarch: false
-  args:
-    DO_SPACES_KEY: <%= ENV['DO_SPACES_KEY'] %>
-    DO_SPACES_SECRET: <%= ENV['DO_SPACES_SECRET'] %>
-    DO_SPACES_BUCKET: <%= ENV['DO_SPACES_BUCKET'] %>
-    DO_SPACES_REGION: <%= ENV['DO_SPACES_REGION'] %>
+  secrets:
+    - DO_SPACES_KEY
+    - DO_SPACES_SECRET
+    - DO_SPACES_BUCKET
+    - DO_SPACES_REGION
 
 env:
   clear:
