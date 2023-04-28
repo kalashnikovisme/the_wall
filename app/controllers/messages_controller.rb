@@ -7,6 +7,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.create(text: params["message"]["text"])
+    @message = Message.create! text: params[:message][:text], photo: params[:message][:photo]
   end
 end
