@@ -42,3 +42,5 @@ gem 'fog-aws'
 gem 'asset_sync'
 
 gem "newrelic_rpm", "~> 9.1"
+
+gem "aws-sdk-s3", "~> 1.121"
