@@ -47,6 +47,7 @@ env:
     ANYCABLE_REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/0"
     REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['REDIS_HOST'] %>:6379/1"
     CABLE_URL: "ws://<%= ENV['ANYCABLE_GO_HOST'] %>/cable"
+    RAILS_SERVE_STATIC_FILES: true
   secret:
     - DB_HOST
     - DO_SPACES_KEY

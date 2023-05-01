@@ -34,16 +34,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN --mount=type=secret,id=DO_SPACES_KEY \
-  --mount=type=secret,id=DO_SPACES_SECRET \
-  --mount=type=secret,id=DO_SPACES_BUCKET \
-  --mount=type=secret,id=DO_SPACES_REGION \
-  DO_SPACES_KEY=$(cat /run/secrets/DO_SPACES_KEY) \
-  DO_SPACES_SECRET=$(cat /run/secrets/DO_SPACES_SECRET) \
-  DO_SPACES_BUCKET=$(cat /run/secrets/DO_SPACES_BUCKET) \
-  DO_SPACES_REGION=$(cat /run/secrets/DO_SPACES_REGION) \
-  SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
-
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
