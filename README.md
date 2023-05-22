@@ -19,7 +19,7 @@ It includes
 
 | Secret | Description | Source |
 | ------------- | ------------- | ------------- |
-| `RAILS_MASTER_KEY` | Encryption key for Rails Credentials | Generate it yourself |
+| `RAILS_MASTER_KEY` | Encryption key for Rails Credentials | `config/master.key` |
 | `MRSK_REGISTRY_PASSWORD` | Your Docker Hub password |  |
 | `DO_SPACES_KEY` | Digital Ocean Spaces Key | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
 | `DO_SPACES_SECRET` | Digital Ocean Spaces Secret | Create Digital Ocean Space (or another S3 compatible storage) and you will get it |
